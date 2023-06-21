@@ -1,6 +1,6 @@
 //
 const express = require("express");
-
+const QuoteModel = require("../models/quotesModel");
 const router = express.Router();
 
 router.get("/", (req, res) => {
@@ -11,8 +11,15 @@ router.get("/:id", (req, res) => {
 	res.json({ msg: "GET QUOTE BY ID REQUEST" });
 });
 
-router.post("/new", (req, res) => {
-	res.json({ msg: "CREATE NEW QUOTE REQUEST" });
+router.post("/new", async (req, res) => {
+	const { quote, author, rating } = req.body;
+
+	try {
+		const quotePost = await QuoteModel.create({ quote, author, rating });
+		res.status(200).json(quotePost);
+	} catch (e) {
+		res.status.json({ error: e.message });
+	}
 });
 
 router.delete("/:id", (req, res) => {

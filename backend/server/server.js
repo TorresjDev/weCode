@@ -24,6 +24,6 @@ mongoose
 		//listen for requests
 		app.listen(port, () => console.log(`Testing weCode: ${port}!`));
 	})
-	.catch((error) => {
-		console.log(error);
+	.catch((e) => {
+		console.error(e);
 	});
