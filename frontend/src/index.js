@@ -1,16 +1,27 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
+import ReactDOM from "react-dom";
+// import ReactDOM from "react-dom/client";
+// import "bootstrap/dist/js/bootstrap";
+// import "toastr/build/toastr.min.css";
 import "bootstrap/dist/css/bootstrap.css";
 import { BrowserRouter } from "react-router-dom";
-
-import "./index.css";
 import App from "./App";
+import "./index.css";
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
+// const root = ReactDOM.createRoot(document.getElementById("root"));
+// root.render(
+// 	<React.StrictMode>
+// 		<BrowserRouter>
+// 			<App />
+// 		</BrowserRouter>
+// 	</React.StrictMode>
+// );
+
+ReactDOM.render(
 	<React.StrictMode>
 		<BrowserRouter>
 			<App />
 		</BrowserRouter>
-	</React.StrictMode>
+	</React.StrictMode>,
+	document.getElementById("root")
 );

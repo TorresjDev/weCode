@@ -1,0 +1,92 @@
+button.link-button {
+	background-color: transparent;
+	border: none;
+	cursor: pointer;
+	text-decoration: underline;
+	display: inline;
+	/* margin: 0;
+  padding: 0; */
+	text-decoration: none;
+}
+
+.link-button:hover,
+.link-button:focus {
+	text-decoration: none;
+}
+
+@keyframes App-logo-spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
+
+html {
+	background-color: #6c757d;
+}
+
+/*? App START */
+
+.app {
+	/* display: flex;
+	justify-content: flex-end;
+	position: fixed;
+	top: 0;
+	left: 0; */
+	height: 100vh;
+}
+
+/*! App END */
+
+/*? Footer START */
+
+.footer {
+	/* display: flex;
+    justify-content: flex-end;
+    position: fixed; */
+	bottom: 0;
+	padding: 0.9rem 3rem 0.12rem 1rem;
+	text-align: end;
+	background-color: #333;
+	color: white;
+	/* left: 0; */
+	/* height: 100%; */
+}
+
+/*! Footer END */
+
+/* Home START */
+
+.home img {
+	border: 3px groove #770000;
+	/* max-height: fit-content; */
+}
+
+.home .card {
+	border: 3px groove #280000;
+	/* max-height: fit-content; */
+}
+
+.home ul {
+	border: 3px groove #525252;
+	/* max-height: fit-content; */
+}
+
+/* Home END */
+
+/* TestAndAjax START */
+
+#test-and-ajax {
+	height: 100vh;
+	/* max-height: fit-content; */
+}
+
+/* TestAndAjax END */
+
+/* google fonts */
+
+.material-symbols-outlined {
+	font-variation-settings: "FILL" 0, "wght" 500, "GRAD" 0, "opsz" 20;
+}
