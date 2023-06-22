@@ -1,33 +1,19 @@
-//
 const express = require("express");
-const QuoteModel = require("../models/quotesModel");
+
+const { createQuote, getQuotes, getQuoteById, updateQuote, deleteQuote } = require("../controllers/quoteController");
+
+//needed for route handlers
 const router = express.Router();
 
-router.get("/", (req, res) => {
-	res.json({ msg: "GET ALL QUOTES REQUEST" });
-});
+//routes
+router.get("/", getQuotes);
 
-router.get("/:id", (req, res) => {
-	res.json({ msg: "GET QUOTE BY ID REQUEST" });
-});
+router.get("/:id", getQuoteById);
 
-router.post("/new", async (req, res) => {
-	const { quote, author, rating } = req.body;
+router.post("/new", createQuote);
 
-	try {
-		const quotePost = await QuoteModel.create({ quote, author, rating });
-		res.status(200).json(quotePost);
-	} catch (e) {
-		res.status.json({ error: e.message });
-	}
-});
+router.delete("/:id", deleteQuote);
 
-router.delete("/:id", (req, res) => {
-	res.json({ msg: "DELETE QUOTE BY ID REQUEST" });
-});
-
-router.patch("/:id", (req, res) => {
-	res.json({ msg: "UPDATE QUOTE BY ID REQUEST" });
-});
+router.patch("/:id", updateQuote);
 
 module.exports = router;
