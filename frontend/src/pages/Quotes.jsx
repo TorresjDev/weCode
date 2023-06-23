@@ -13,6 +13,7 @@ function Quotes() {
 			if (response.ok) {
 				setQuotes(json);
 			}
+			return response;
 		};
 
 		fetchQuotes();

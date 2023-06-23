@@ -24,7 +24,7 @@ function Login() {
 				<div className="col-md-6 mx-auto my-2">
 					<form className="border border-3 border-secondary rounded-3 shadow-lg m-1 p-3">
 						<div className="m-3 form-group">
-							<label for="exampleInputEmail1" className="form-label">
+							<label htmlFor="exampleInputEmail1" className="form-label">
 								Email address
 							</label>
 							<input
@@ -40,7 +40,7 @@ function Login() {
 							</div>
 						</div>
 						<div className="m-3 form-group">
-							<label for="exampleInputPassword1" className="form-label">
+							<label htmlFor="exampleInputPassword1" className="form-label">
 								Password
 							</label>
 							<input
@@ -53,7 +53,7 @@ function Login() {
 						</div>
 						<div className="mb-3 form-check">
 							<input type="checkbox" className="form-check-input" id="exampleCheck1" />
-							<label className="form-check-label" for="exampleCheck1">
+							<label className="form-check-label" htmlFor="exampleCheck1">
 								Check me out
 							</label>
 						</div>
@@ -62,7 +62,7 @@ function Login() {
 						</button>
 					</form>
 				</div>
-				<div className="col-md-12"></div>
+				<div className="col-md-12 "></div>
 			</div>
 		</div>
 	);
