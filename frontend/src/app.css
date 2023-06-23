@@ -35,10 +35,24 @@ html {
 	position: fixed;
 	top: 0;
 	left: 0; */
-	height: 100vh;
+	height: 100%;
+	width: 100%;
 }
 
 /*! App END */
+
+/*? pages START */
+
+.pages {
+	/* display: flex;
+	justify-content: flex-end;
+	position: fixed;
+	top: 0;
+	left: 0; */
+	height: 99vh;
+}
+
+/*! pages END */
 
 /*? Footer START */
 
