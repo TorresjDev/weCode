@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import "./quotes.css";
 function QuoteForm() {
 	const [quoteState, setQuoteState] = useState({
 		quote: "",
@@ -9,14 +8,14 @@ function QuoteForm() {
 	});
 
 	const handleFormField = (e) => {
-		// debugger;
+		debugger;
 		const { value, name } = e.target;
 		setQuoteState((prevState) => {
 			const newState = { ...prevState };
-			if (!e.target.checked) {
-				newState[name] = value;
-			} else {
+			if (value === "on") {
 				newState.checkbox = e.target.checked;
+			} else {
+				newState[name] = value;
 			}
 			return newState;
 		});
