@@ -18,8 +18,9 @@ function Login() {
 	false && console.log(loginState);
 
 	return (
-		<div className="container-fluid">
-			<div className="row g-auto">
+		<div className="container-fluid h-100">
+			<div className="row h-100 g-auto">
+				<div className="col-md-12"></div>
 				<div className="col-md-6 mx-auto my-2">
 					<form className="border border-3 border-secondary rounded-3 shadow-lg m-1 p-3">
 						<div className="m-3 form-group">
@@ -61,6 +62,7 @@ function Login() {
 						</button>
 					</form>
 				</div>
+				<div className="col-md-12"></div>
 			</div>
 		</div>
 	);
