@@ -2,13 +2,13 @@ import React from "react";
 
 function QuoteCard({ quote }) {
 	return (
-		<div className="card m-2 p-3">
+		<div className="card m-2 p-3 border border-1 border-secondary rounded-3 shadow">
 			<figure>
-				<blockquote class="blockquote">
+				<blockquote className="blockquote">
 					<p>{quote.quote}</p>
 				</blockquote>
-				<figcaption class=" ms-5 blockquote-footer">
-					By <cite title="Source Title">{quote.author}</cite>
+				<figcaption className=" ms-5 blockquote-footer">
+					By <cite title="Author">{quote.author}</cite>
 				</figcaption>
 			</figure>
 		</div>
