@@ -4,7 +4,10 @@ import QuoteForm from "../components/quotes/QuoteForm";
 import quotesService from "../services/quotesService";
 
 function Quotes() {
-	const [quoteState, setQuotes] = useState(null);
+	const [quoteState, setQuotes] = useState({
+		quotesArr: [],
+		quotesCompts: []
+	});
 
 	useEffect(() => {
 		quotesService.getQuotes().then(onGetQuotesSuccess).catch(onGetQuotesError);
@@ -12,7 +15,14 @@ function Quotes() {
 
 	const onGetQuotesSuccess = (response) => {
 		console.log({ response });
-		setQuotes(response.data);
+		setQuotes((prevState) => {
+			let qState = { ...prevState };
+			qState.quotesArr = response.data;
+			qState.quotesCompts = response.data.map((quote) => {
+				return <QuoteCard key={"quote: " + quote._id} quote={quote} />;
+			});
+			return qState;
+		});
 	};
 
 	const onGetQuotesError = (error) => {
@@ -21,15 +31,10 @@ function Quotes() {
 
 	return (
 		<div className="container-fluid">
-			<div className="row gx-3 my-3">
+			<div className="row gx-1 my-3">
+				<div className="col-md-5 mx-auto">{quoteState.quotesArr && quoteState.quotesCompts}</div>
 				<div className="col-md-5 mx-auto">
-					{quoteState &&
-						quoteState.map((quote) => {
-							return <QuoteCard key={"quote: " + quote._id} quote={quote} />;
-						})}
-				</div>
-				<div className="col-md-5 mx-auto">
-					<QuoteForm />
+					<QuoteForm updateQState={onGetQuotesSuccess} />
 				</div>
 			</div>
 		</div>

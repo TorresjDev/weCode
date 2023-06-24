@@ -4,6 +4,17 @@ const quotesService = {
 	endpoint: `${process.env.REACT_APP_API_HOST}/api/quotes`
 };
 
+quotesService.addQuote = (payload) => {
+	const config = {
+		method: "POST",
+		url: quotesService.endpoint,
+		data: payload,
+		crossdomain: true,
+		header: { "Content-Type": "application/json" }
+	};
+	return axios(config);
+};
+
 quotesService.getQuotes = () => {
 	const config = {
 		method: "GET",
@@ -14,7 +25,7 @@ quotesService.getQuotes = () => {
 	return axios(config);
 };
 
-quotesService.getQuoteById = (id) => {
+quotesService.getQuote = (id) => {
 	const config = {
 		method: "GET",
 		url: `${quotesService.endpoint}/${id}`,
@@ -24,11 +35,21 @@ quotesService.getQuoteById = (id) => {
 	return axios(config);
 };
 
-quotesService.addQuote = (payload) => {
+quotesService.updateQuote = (id, payload) => {
 	const config = {
-		method: "POST",
-		url: quotesService.endpoint,
+		method: "PATCH",
+		url: `${quotesService.endpoint}/${id}`,
 		data: payload,
+		crossdomain: true,
+		header: { "Content-Type": "application/json" }
+	};
+	return axios(config);
+};
+
+quotesService.deleteQuote = (id) => {
+	const config = {
+		method: "DELETE",
+		url: `${quotesService.endpoint}/${id}`,
 		crossdomain: true,
 		header: { "Content-Type": "application/json" }
 	};

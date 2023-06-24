@@ -7,10 +7,9 @@ const basicSchema = Yup.object().shape({
 	quote: Yup.string().min(9).max(600).required("Quote is required"),
 	author: Yup.string().min(6).required("Author is required"),
 	checkbox: Yup.boolean()
-	// rating: Yup.boolean()
 });
 
-function QuoteForm() {
+function QuoteForm({ updateQState }) {
 	const [quoteState, setQuoteState] = useState({
 		quote: "",
 		author: "",
@@ -25,18 +24,14 @@ function QuoteForm() {
 		});
 		payload.quote = values.quote;
 		payload.author = quoteState.author;
-		debugger;
-		if (!values.checkbox) {
-			payload.rating = null;
-			quotesService.addQuote(payload).then(onAddQuoteSuccess).catch(onAddQuoteError);
-		} else {
-			payload.rating = 0;
-			quotesService.addQuote(payload).then(onAddQuoteSuccess).catch(onAddQuoteError);
-		}
+		payload.rating = 0;
+		quotesService.addQuote(payload).then(onAddQuoteSuccess).catch(onAddQuoteError);
+
 		console.log("Formik values:", { values }, "Local state values:", { quoteState });
 	};
 
 	var onAddQuoteSuccess = (response) => {
+		updateQState(response.data);
 		console.log(response);
 	};
 
