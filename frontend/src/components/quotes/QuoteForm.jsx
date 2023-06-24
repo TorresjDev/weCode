@@ -1,4 +1,15 @@
 import React, { useState } from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import quotesService from "../../services/quotesService";
+
+const basicSchema = Yup.object().shape({
+	quote: Yup.string().min(9).max(600).required("Quote is required"),
+	author: Yup.string().min(6).required("Author is required"),
+	checkbox: Yup.boolean()
+	// rating: Yup.boolean()
+});
+
 function QuoteForm() {
 	const [quoteState, setQuoteState] = useState({
 		quote: "",
@@ -7,60 +18,70 @@ function QuoteForm() {
 		checkbox: false
 	});
 
-	const handleFormField = (e) => {
-		debugger;
-		const { value, name } = e.target;
+	const handleSubmit = (values) => {
+		let payload = {};
 		setQuoteState((prevState) => {
-			const newState = { ...prevState };
-			if (value === "on") {
-				newState.checkbox = e.target.checked;
-			} else {
-				newState[name] = value;
-			}
-			return newState;
+			return { ...prevState, ...values };
 		});
+		payload.quote = values.quote;
+		payload.author = quoteState.author;
+		debugger;
+		if (!values.checkbox) {
+			payload.rating = null;
+			quotesService.addQuote(payload).then(onAddQuoteSuccess).catch(onAddQuoteError);
+		} else {
+			payload.rating = 0;
+			quotesService.addQuote(payload).then(onAddQuoteSuccess).catch(onAddQuoteError);
+		}
+		console.log("Formik values:", { values }, "Local state values:", { quoteState });
 	};
+
+	var onAddQuoteSuccess = (response) => {
+		console.log(response);
+	};
+
+	var onAddQuoteError = (error) => {
+		console.log(error);
+	};
+
 	false && console.log(quoteState);
 
 	return (
-		<form className="border border-3 border-secondary rounded-3 shadow-lg m-1 p-3">
-			<div className="mb-3 mx-3">
-				<label htmlFor="quote" className="form-label">
-					Quote
-				</label>
-				<textarea
-					name="quote"
-					className="form-control"
-					id="quote"
-					aria-describedby="quoteHelp"
-					onChange={handleFormField}
-				/>
-				<div id="quoteHelp" className="form-text">
-					We'll never share your email with anyone else.
+		<Formik initialValues={quoteState} onSubmit={handleSubmit} validationSchema={basicSchema}>
+			<Form className="border border-3 border-secondary rounded-3 shadow-lg m-1 p-3">
+				<div className="mb-3 mx-3">
+					<label htmlFor="quote" className="form-label">
+						Quote
+					</label>
+					<Field as="textarea" name="quote" className="form-control" id="quote" aria-describedby="quoteHelp" />
+					<ErrorMessage name="quote" component="div" className="ms-3 has-error text-danger" />
+					<div id="quoteHelp" className="form-text">
+						We'll never share your email with anyone else.
+					</div>
 				</div>
-			</div>
-			<div className="mb-3 mx-3">
-				<label htmlFor="author" className="form-label">
-					Writer
-				</label>
-				<input type="text" name="author" className="form-control" id="author" onChange={handleFormField} />
-			</div>
-			<div className="mb-3 mx-4 form-check">
-				<input
-					type="checkbox"
-					className="form-check-input"
-					id="rating"
-					// checked={quoteState.checkout}
-					onChange={handleFormField}
-				/>
-				<label className="form-check-label" htmlFor="rating">
-					Allow Ratings?
-				</label>
-			</div>
-			<button type="submit" className="btn btn-primary">
-				Submit
-			</button>
-		</form>
+				<div className="mb-3 mx-3">
+					<label htmlFor="author" className="form-label">
+						Writer
+					</label>
+					<Field type="text" name="author" className="form-control" id="author" />
+					<ErrorMessage name="author" component="div" className="ms-3 has-error text-danger" />
+				</div>
+				<div className="row">
+					<div className="col-md-3 mx-5 col-sm-5 mx-2 form-check">
+						<Field type="checkbox" name="checkbox" className="form-check-input" id="checkbox" />
+						<ErrorMessage name="checkbox" component="div" className="ms-3 has-error text-danger" />
+						<label className="form-check-label" htmlFor="checkbox">
+							Allow Ratings?
+						</label>
+					</div>
+					<div className="col-md-3 col-sm-1">
+						<button type="submit" className="btn btn-primary">
+							Submit
+						</button>
+					</div>
+				</div>
+			</Form>
+		</Formik>
 	);
 }
 

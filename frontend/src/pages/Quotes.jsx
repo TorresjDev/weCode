@@ -1,23 +1,23 @@
 import React, { useEffect, useState } from "react";
 import QuoteCard from "../components/quotes/QuoteCard";
 import QuoteForm from "../components/quotes/QuoteForm";
+import quotesService from "../services/quotesService";
 
 function Quotes() {
 	const [quoteState, setQuotes] = useState(null);
 
 	useEffect(() => {
-		const fetchQuotes = async () => {
-			const response = await fetch("/api/quotes");
-			const json = await response.json();
-
-			if (response.ok) {
-				setQuotes(json);
-			}
-			return response;
-		};
-
-		fetchQuotes();
+		quotesService.getQuotes().then(onGetQuotesSuccess).catch(onGetQuotesError);
 	}, []);
+
+	const onGetQuotesSuccess = (response) => {
+		console.log({ response });
+		setQuotes(response.data);
+	};
+
+	const onGetQuotesError = (error) => {
+		console.log({ error });
+	};
 
 	return (
 		<div className="container-fluid">
