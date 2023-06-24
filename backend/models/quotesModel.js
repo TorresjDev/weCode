@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 //used to define structure and schema of MongoDB document
 const Schema = mongoose.Schema;
 
-// schema for the "Quote" collection
+// schema for "Quote" collection
 const quoteSchema = new Schema(
 	{
 		quote: {
