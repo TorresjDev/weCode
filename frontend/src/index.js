@@ -1,5 +1,4 @@
 import React from "react";
-// import ReactDOM from "react-dom";
 import ReactDOM from "react-dom/client";
 // import "bootstrap/dist/js/bootstrap";
 // import "toastr/build/toastr.min.css";
@@ -16,12 +15,3 @@ root.render(
 		</BrowserRouter>
 	</React.StrictMode>
 );
-
-// ReactDOM.render(
-// 	<React.StrictMode>
-// 		<BrowserRouter>
-// 			<App />
-// 		</BrowserRouter>
-// 	</React.StrictMode>,
-// 	document.getElementById("root")
-// );
