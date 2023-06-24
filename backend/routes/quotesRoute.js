@@ -6,14 +6,14 @@ const { createQuote, getQuotes, getQuoteById, updateQuote, deleteQuote } = requi
 const router = express.Router();
 
 //routes
+router.post("/", createQuote);
+
 router.get("/", getQuotes);
 
 router.get("/:id", getQuoteById);
 
-router.post("/new", createQuote);
+router.patch("/:id", updateQuote);
 
 router.delete("/:id", deleteQuote);
-
-router.patch("/:id", updateQuote);
 
 module.exports = router;
