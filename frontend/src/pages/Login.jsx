@@ -1,68 +1,79 @@
 import React, { useState } from "react";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+
+const passwordSchema = Yup.string()
+	.min(6, "Password must be at least 6 characters")
+	.max(15, "Password must be at most 15 characters")
+	.matches(
+		/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()])/,
+		"Password must contain at least a uppercase letter, a lowercase letter,a number, and a symbol"
+	)
+	.required("Password is required");
+
+const basicSchema = Yup.object().shape({
+	email: Yup.string().email().required("Email is required"),
+	password: passwordSchema
+});
 
 function Login() {
 	const [loginState, setLoginState] = useState({
 		email: "",
-		password: ""
+		password: "",
+		rememberMe: false
 	});
 
-	const handleFormField = (e) => {
-		const { value, name } = e.target;
+	const handleSubmit = (values) => {
 		setLoginState((prevState) => {
-			const newState = { ...prevState };
-			newState[name] = value;
-			return newState;
+			return { ...prevState, ...values };
 		});
+		console.log("Formik values:", { values }, "Local state values:", { loginState });
 	};
-
-	false && console.log(loginState);
 
 	return (
 		<div className="container-fluid h-100">
 			<div className="row h-100 g-auto">
-				<div className="col-md-12"></div>
-				<div className="col-md-6 mx-auto my-2">
-					<form className="border border-3 border-secondary rounded-3 shadow-lg m-1 p-3">
-						<div className="m-3 form-group">
-							<label htmlFor="exampleInputEmail1" className="form-label">
-								Email address
-							</label>
-							<input
-								type="email"
-								name="email"
-								className="form-control"
-								id="exampleInputEmail1"
-								aria-describedby="emailHelp"
-								onChange={handleFormField}
-							/>
-							<div id="emailHelp" className="form-text">
-								We'll never share your email with anyone else.
+				<div className="col-md-6  col-sm-6 mx-auto my-2">
+					<Formik initialValues={loginState} onSubmit={handleSubmit} validationSchema={basicSchema}>
+						<Form className="border border-3 border-secondary rounded-3 shadow-lg m-1 p-3">
+							<div className="m-3 form-group">
+								<label htmlFor="email" className="form-label">
+									Email address
+								</label>
+								<Field type="email" name="email" className="form-control" id="email" aria-describedby="emailHelp" />
+								<ErrorMessage name="email" component="div" className="ms-3 has-error text-danger" />
+								<div id="emailHelp" className="form-text">
+									We'll never share your email with anyone else.
+								</div>
 							</div>
-						</div>
-						<div className="m-3 form-group">
-							<label htmlFor="exampleInputPassword1" className="form-label">
-								Password
-							</label>
-							<input
-								type="password"
-								name="password"
-								className="form-control"
-								id="exampleInputPassword1"
-								onChange={handleFormField}
-							/>
-						</div>
-						<div className="mb-3 form-check">
-							<input type="checkbox" className="form-check-input" id="exampleCheck1" />
-							<label className="form-check-label" htmlFor="exampleCheck1">
-								Check me out
-							</label>
-						</div>
-						<button type="submit" className="btn btn-primary">
-							Submit
-						</button>
-					</form>
+							<div className="m-3 form-group">
+								<label htmlFor="password" className="form-label">
+									Password
+								</label>
+								<Field type="password" name="password" className="form-control" id="password" />
+								<ErrorMessage name="password" component="div" className="ms-3 has-error text-danger" />
+							</div>
+							<div className="row">
+								<div className="col-md-3 mx-5 col-sm-5 mx-2 form-check">
+									<Field
+										type="checkbox"
+										name="rememberMe"
+										className="form-check-input border-2 border-secondary"
+										id="rememberMe"
+									/>
+									<label className="form-check-label" htmlFor="rememberMe">
+										Remember Me?
+									</label>
+								</div>
+								<div className="col-md-3 col-sm-1">
+									<button type="submit" className="btn btn-primary">
+										Submit
+									</button>
+								</div>
+							</div>
+						</Form>
+					</Formik>
 				</div>
-				<div className="col-md-12 "></div>
 			</div>
 		</div>
 	);
