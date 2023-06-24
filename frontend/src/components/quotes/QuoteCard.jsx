@@ -2,7 +2,7 @@ import React from "react";
 
 function QuoteCard({ quote }) {
 	return (
-		<div className="card m-2 p-3 border border-1 border-secondary rounded-3 shadow">
+		<div className="m-2 px-2 pt-2 border border-1 border-secondary rounded-3 shadow">
 			<figure>
 				<blockquote className="blockquote">
 					<p>{quote.quote}</p>

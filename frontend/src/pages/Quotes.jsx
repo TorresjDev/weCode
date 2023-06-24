@@ -21,7 +21,7 @@ function Quotes() {
 
 	return (
 		<div className="container-fluid">
-			<div className="row gx-3 my-3">
+			<div className="row gx-1 my-3">
 				<div className="col-md-5 mx-auto">
 					{quoteState &&
 						quoteState.map((quote) => {

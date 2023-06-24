@@ -25,9 +25,8 @@ function QuoteForm() {
 		});
 		payload.quote = values.quote;
 		payload.author = quoteState.author;
-		debugger;
 		if (!values.checkbox) {
-			payload.rating = null;
+			payload.rating = 0;
 			quotesService.addQuote(payload).then(onAddQuoteSuccess).catch(onAddQuoteError);
 		} else {
 			payload.rating = 0;
