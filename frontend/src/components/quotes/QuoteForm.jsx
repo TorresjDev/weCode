@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import quotesService from "../../services/quotesService";
+import { useQuotesContext } from "../../hooks/useWorkoutsContext";
 
 const basicSchema = Yup.object().shape({
 	quote: Yup.string().min(9).max(600).required("Quote is required"),
@@ -9,7 +10,8 @@ const basicSchema = Yup.object().shape({
 	checkbox: Yup.boolean()
 });
 
-function QuoteForm({ updateQState }) {
+function QuoteForm() {
+	const { dispatch } = useQuotesContext();
 	const [quoteState, setQuoteState] = useState({
 		quote: "",
 		author: "",
@@ -31,7 +33,7 @@ function QuoteForm({ updateQState }) {
 	};
 
 	var onAddQuoteSuccess = (response) => {
-		updateQState(response.data);
+		dispatch({ type: "CREATE_QUOTE", payload: response.data });
 		console.log(response);
 	};
 
