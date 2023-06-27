@@ -45,34 +45,37 @@ function QuoteForm() {
 
 	return (
 		<Formik initialValues={quoteState} onSubmit={handleSubmit} validationSchema={basicSchema}>
-			<Form className="border border-3 border-secondary rounded-3 shadow-lg m-1 p-3">
+			<Form className="border border-3 border-dark bg-secondary text-light rounded-3 shadow-lg m-1 p-3">
 				<div className="mb-3 mx-3">
 					<label htmlFor="quote" className="form-label">
 						Quote
 					</label>
-					<Field as="textarea" name="quote" className="form-control" id="quote" aria-describedby="quoteHelp" />
+					<Field
+						as="textarea"
+						name="quote"
+						className="form-control border border-2 border-dark"
+						id="quote"
+						aria-describedby="quoteHelp"
+					/>
 					<ErrorMessage name="quote" component="div" className="ms-3 has-error text-danger" />
-					<div id="quoteHelp" className="form-text">
-						We'll never share your email with anyone else.
-					</div>
 				</div>
 				<div className="mb-3 mx-3">
 					<label htmlFor="author" className="form-label">
 						Writer
 					</label>
-					<Field type="text" name="author" className="form-control" id="author" />
+					<Field type="text" name="author" className="form-control border border-2 border-dark" id="author" />
 					<ErrorMessage name="author" component="div" className="ms-3 has-error text-danger" />
 				</div>
 				<div className="row">
-					<div className="col-md-3 mx-5 col-sm-5 mx-2 form-check">
-						<Field type="checkbox" name="checkbox" className="form-check-input" id="checkbox" />
+					<div className="col-md-3 mx-5 col-sm-5 mx-2 form-check ">
+						<Field type="checkbox" name="checkbox" className="form-check-input border border-2 border-dark" id="checkbox" />
 						<ErrorMessage name="checkbox" component="div" className="ms-3 has-error text-danger" />
 						<label className="form-check-label" htmlFor="checkbox">
 							Allow Ratings?
 						</label>
 					</div>
 					<div className="col-md-3 col-sm-1">
-						<button type="submit" className="btn btn-primary">
+						<button type="submit" className="btn btn-primary border border-2 border-dark">
 							Submit
 						</button>
 					</div>
