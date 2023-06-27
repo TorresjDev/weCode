@@ -104,3 +104,12 @@ html {
 .material-symbols-outlined {
 	font-variation-settings: "FILL" 0, "weight" 500, "GRAD" 0, "opsz" 20;
 }
+
+nav {
+	font-family: "Silkscreen";
+}
+
+/* quote-card*/
+.quote-card {
+	font-family: "EB Garamond";
+}

@@ -6,45 +6,35 @@ import { useQuotesContext } from "../hooks/useWorkoutsContext";
 
 function Quotes() {
 	const { state, dispatch } = useQuotesContext();
-	// const [quoteState, setQuotes] = useState({
-	// 	quotesArr: [],
-	// 	quotesCompts: []
-	// });
 
 	useEffect(() => {
 		quotesService.getQuotes().then(onGetQuotesSuccess).catch(onGetQuotesError);
 	}, []);
 
-	const mapQuotes = (quote) => {
-		return <QuoteCard key={"quote: " + quote._id} quote={quote} />;
+	const mapQuotes = (quote, index) => {
+		return (
+			<div key={`quote: ${index}/${quote._id}`} className="col-md-4 mx-auto">
+				<QuoteCard quote={quote} />
+			</div>
+		);
 	};
 
 	const onGetQuotesSuccess = (response) => {
 		console.log({ response });
 		dispatch({ type: "SET_QUOTES", payload: response.data });
-		// setQuotes((prevState) => {
-		// 	let qState = { ...prevState };
-		// 	qState.quotesArr = response.data;
-		// 	qState.quotesCompts = response.data.map((quote) => {
-		// 		return <QuoteCard key={"quote: " + quote._id} quote={quote} />;
-		// 	});
-		// 	return qState;
-		// });
 	};
 
 	const onGetQuotesError = (error) => {
 		console.log({ error });
 	};
-	console.log({ state });
 
 	return (
 		<div className="container-fluid">
-			<div className="row gx-1 my-3">
-				<div className="col-md-5 mx-auto">{state.quotes && state.quotes.map(mapQuotes)}</div>
-				{/* state.quotes.map(mapQuotes) */}
-				<div className="col-md-5 mx-auto">
-					<QuoteForm updateQState={onGetQuotesSuccess} />
-				</div>
+			<div className="col-md-7 mx-auto mt-3">
+				<QuoteForm updateQState={onGetQuotesSuccess} />
+			</div>
+			<div className="row gx-1 my-3 bg-light border border-3 border-dark rounded">
+				{state.quotes && state.quotes.map(mapQuotes)}
 			</div>
 		</div>
 	);
