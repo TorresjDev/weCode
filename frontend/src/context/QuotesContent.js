@@ -14,6 +14,10 @@ export const quotesReducer = (state, action) => {
 			return {
 				quotes: [action.payload, ...state.quotes]
 			};
+		case "DELETE_QUOTE":
+			return {
+				quotes: state.quotes.filter((quote) => quote._id !== action.payload._id)
+			};
 		default:
 			return state;
 	}
