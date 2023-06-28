@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import QuoteCard from "../components/quotes/QuoteCard";
 import QuoteForm from "../components/quotes/QuoteForm";
 import quotesService from "../services/quotesService";
-import { useQuotesContext } from "../hooks/useWorkoutsContext";
+import { useQuotesContext } from "../hooks/useQuotesContext";
 
 function Quotes() {
 	const { state, dispatch } = useQuotesContext();

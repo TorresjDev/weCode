@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import quotesService from "../../services/quotesService";
-import { useQuotesContext } from "../../hooks/useWorkoutsContext";
+import { useQuotesContext } from "../../hooks/useQuotesContext";
 
 const basicSchema = Yup.object().shape({
 	quote: Yup.string().min(9).max(600).required("Quote is required"),
