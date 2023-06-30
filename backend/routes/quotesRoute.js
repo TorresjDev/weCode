@@ -14,6 +14,8 @@ router.get("/:id", getQuoteById);
 
 router.patch("/:id", updateQuote);
 
+router.put("/:id", updateQuote);
+
 router.delete("/:id", deleteQuote);
 
 module.exports = router;
