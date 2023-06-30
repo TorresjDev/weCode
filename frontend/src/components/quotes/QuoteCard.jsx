@@ -1,6 +1,7 @@
 import React from "react";
 import { useQuotesContext } from "../../hooks/useQuotesContext";
 import quotesService from "../../services/quotesService";
+import formatDistanceToNow from "date-fns/formatDistanceToNow";
 
 function QuoteCard({ quote }) {
 	const { dispatch } = useQuotesContext();
@@ -37,10 +38,19 @@ function QuoteCard({ quote }) {
 				</figure>
 			</div>
 			<div className="card-footer">
-				<div className="col-md-5 ms-auto mb-1 ">
-					<div className="mx-auto btn btn-outline-warning">Edit</div>
-					<div className=" ms-2 btn btn-outline-danger" onClick={handleDelete}>
-						Delete
+				<div className="row">
+					<div className="col-md-4 ms-auto mt-auto">
+						<p className="lead">
+							<em>{formatDistanceToNow(new Date(quote.createdAt), { addSuffix: true })}</em>
+						</p>
+					</div>
+					<div className="col-md-5 ms-auto mb-1 ">
+						<div className=" mx-auto btn btn-outline-warning">
+							<div className="material-symbols-outlined">Edit_Square</div>
+						</div>
+						<div className=" ms-2 btn btn-outline-danger" onClick={handleDelete}>
+							<div className="material-symbols-outlined">Delete</div>
+						</div>
 					</div>
 				</div>
 			</div>
