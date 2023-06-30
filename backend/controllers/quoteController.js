@@ -3,6 +3,18 @@ const mongoose = require("mongoose");
 
 const createQuote = async (req, res) => {
 	const { quote, author, rating } = req.body;
+	let emptyFieldInputs = [];
+
+	if (!quote) {
+		emptyFieldInputs.push("quote");
+	}
+	if (!author) {
+		emptyFieldInputs.push("author");
+	}
+
+	if (emptyFieldInputs.length > 0) {
+		return res.status(400).json({ error: "input for quote and author is required", emptyFieldInputs });
+	}
 	//adds doc to db
 	try {
 		const quotePost = await QuoteModel.create({ quote, author, rating });
