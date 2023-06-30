@@ -28,7 +28,6 @@ function QuoteForm() {
 		payload.author = quoteState.author;
 		payload.rating = 0;
 		quotesService.addQuote(payload).then(onAddQuoteSuccess).catch(onAddQuoteError);
-
 		console.log("Formik values:", { values }, "Local state values:", { quoteState });
 	};
 

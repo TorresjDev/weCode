@@ -2,10 +2,11 @@ import React from "react";
 import { useQuotesContext } from "../../hooks/useQuotesContext";
 import quotesService from "../../services/quotesService";
 import formatDistanceToNow from "date-fns/formatDistanceToNow";
+import { useNavigate } from "react-router";
 
 function QuoteCard({ quote }) {
 	const { dispatch } = useQuotesContext();
-
+	const navigate = useNavigate();
 	const handleDelete = () => {
 		quotesService
 			.deleteQuote(quote._id)
@@ -17,10 +18,17 @@ function QuoteCard({ quote }) {
 			});
 	};
 
+	const handleEditClick = (e) => {
+		e.preventDefault();
+		const stateCard = { type: "QUOTE_CARD", payload: quote };
+		navigate(`/quote/${quote._id}`, { ...stateCard });
+		console.log("handleEditClick: ", { stateCard });
+	};
+
 	return (
 		<div
 			className="card m-2 px-2 pt-2 border border-3 border-dark rounded-3 shadow-lg d-flex"
-			style={{ height: "12rem", overflowY: "auto" }}
+			style={{ height: "13rem", overflowY: "auto" }}
 		>
 			<div className="card-body p-1">
 				<figure className="quote-card">
@@ -46,7 +54,9 @@ function QuoteCard({ quote }) {
 					</div>
 					<div className="col-md-5 ms-auto mb-1 ">
 						<div className=" mx-auto btn btn-outline-warning">
-							<div className="material-symbols-outlined">Edit_Square</div>
+							<div className="material-symbols-outlined" onClick={handleEditClick}>
+								Edit_Square
+							</div>
 						</div>
 						<div className=" ms-2 btn btn-outline-danger" onClick={handleDelete}>
 							<div className="material-symbols-outlined">Delete</div>
