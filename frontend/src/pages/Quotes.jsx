@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useCallback } from "react";
 import QuoteCard from "../components/quotes/QuoteCard";
 import QuoteForm from "../components/quotes/QuoteForm";
 import quotesService from "../services/quotesService";
@@ -6,10 +6,6 @@ import { useQuotesContext } from "../hooks/useQuotesContext";
 
 function Quotes() {
 	const { state, dispatch } = useQuotesContext();
-
-	useEffect(() => {
-		quotesService.getQuotes().then(onGetQuotesSuccess).catch(onGetQuotesError);
-	}, []);
 
 	const mapQuotes = (quote, index) => {
 		return (
@@ -19,14 +15,21 @@ function Quotes() {
 		);
 	};
 
-	const onGetQuotesSuccess = (response) => {
-		console.log({ response });
-		dispatch({ type: "SET_QUOTES", payload: response.data });
-	};
+	const onGetQuotesSuccess = useCallback(
+		(response) => {
+			console.log({ response });
+			return dispatch({ type: "SET_QUOTES", payload: response.data });
+		},
+		[dispatch]
+	);
 
-	const onGetQuotesError = (error) => {
+	const onGetQuotesError = useCallback((error) => {
 		console.log({ error });
-	};
+	}, []);
+
+	useEffect(() => {
+		quotesService.getQuotes().then(onGetQuotesSuccess).catch(onGetQuotesError);
+	}, [onGetQuotesSuccess, onGetQuotesError]);
 
 	return (
 		<div className="container-fluid">
