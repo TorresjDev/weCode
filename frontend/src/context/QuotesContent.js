@@ -3,8 +3,7 @@ import { createContext, useReducer } from "react";
 export const QuotesContext = createContext();
 
 export const quotesReducer = (state, action) => {
-	console.log(state, action);
-
+	console.log({ state, action });
 	switch (action.type) {
 		case "SET_QUOTES":
 			return {
@@ -33,7 +32,5 @@ export const QuotesContextProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(quotesReducer, {
 		quotes: null
 	});
-	// console.log(children, state);
-
 	return <QuotesContext.Provider value={{ state, dispatch }}>{children}</QuotesContext.Provider>;
 };

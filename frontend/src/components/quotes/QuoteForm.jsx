@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import quotesService from "../../services/quotesService";
@@ -15,6 +15,7 @@ const basicSchema = Yup.object().shape({
 
 function QuoteForm() {
 	const location = useLocation();
+	const navigate = useNavigate();
 	const { dispatch } = useQuotesContext();
 	const [quoteState, setQuoteState] = useState({
 		quote: "",
@@ -39,72 +40,42 @@ function QuoteForm() {
 			return { ...prevState, ...values };
 		});
 		payload.quote = values.quote;
-		payload.author = quoteState.author;
-		payload.rating = quoteState.rating;
+		payload.author = values.author;
+		payload.rating = quoteState.rating > 0 ? quoteState.rating : 0;
 		if (!quoteState._id) {
 			quotesService.addQuote(payload).then(onAddQuoteSuccess).catch(onAddQuoteError);
 		} else {
 			quotesService.updateQuote(id, payload).then(onUpdateQuoteSuccess).catch(onUpdateQuoteError);
 		}
-		console.log("Formik values:", { values }, "state values:", { quoteState });
+		console.log("Formik values:", { values }, "state values:", { quoteState }, { payload });
 	};
 
 	var onUpdateQuoteSuccess = (response) => {
 		dispatch({ type: "UPDATE_QUOTE", payload: response.data });
-		console.log(response);
-		toast.success("Quote updated successfully", {
-			position: "top-right",
-			autoClose: 3000,
-			hideProgressBar: false,
-			closeOnClick: true,
-			pauseOnHover: true,
-			draggable: true,
-			progress: undefined,
-			theme: "dark"
-		});
+		console.log({ response });
+		toast.success("Quote updated successfully\n \nDirecting you to Quotes page");
+		setTimeout(() => {
+			navigate("/quotes");
+		}, 3000);
 	};
 
 	var onUpdateQuoteError = (error) => {
 		console.log(error);
-		toast.error(`Couldn't update quote\n\n${error.message}`, {
-			position: "top-right",
-			autoClose: 3000,
-			hideProgressBar: false,
-			closeOnClick: true,
-			pauseOnHover: true,
-			draggable: true,
-			progress: undefined,
-			theme: "dark"
-		});
+		toast.error(`Couldn't update quote\n\n${error.message}`);
 	};
 
 	var onAddQuoteSuccess = (response) => {
 		dispatch({ type: "CREATE_QUOTE", payload: response.data });
-		console.log(response);
-		toast.success("Quote created successfully", {
-			position: "top-right",
-			autoClose: 3000,
-			hideProgressBar: false,
-			closeOnClick: true,
-			pauseOnHover: true,
-			draggable: true,
-			progress: undefined,
-			theme: "dark"
-		});
+		console.log({ response });
+		toast.success("Quote created successfully\n \nDirecting you to Quotes page");
+		setTimeout(() => {
+			navigate("/quotes");
+		}, 3000); //1000 = 1sec
 	};
 
 	var onAddQuoteError = (error) => {
 		console.log(error);
-		toast.error(`Couldn't create quote\n\n${error.message}`, {
-			position: "top-right",
-			autoClose: 3000,
-			hideProgressBar: false,
-			closeOnClick: true,
-			pauseOnHover: true,
-			draggable: true,
-			progress: undefined,
-			theme: "dark"
-		});
+		toast.error(`Couldn't create quote\n\n${error.message}`);
 	};
 
 	false && console.log(quoteState);
@@ -174,7 +145,15 @@ function QuoteForm() {
 					</Formik>
 				</div>
 			</div>
-			<ToastContainer />
+			<ToastContainer
+				position="top-right"
+				autoClose={5000}
+				hideProgressBar={false}
+				closeOnClick={true}
+				pauseOnHover={true}
+				draggable={true}
+				theme="dark"
+			/>
 		</div>
 	);
 }
