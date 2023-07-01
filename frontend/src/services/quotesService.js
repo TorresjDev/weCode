@@ -37,7 +37,7 @@ quotesService.getQuote = (id) => {
 
 quotesService.updateQuote = (id, payload) => {
 	const config = {
-		method: "PATCH",
+		method: "PUT",
 		url: `${quotesService.endpoint}/${id}`,
 		data: payload,
 		crossdomain: true,

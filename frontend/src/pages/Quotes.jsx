@@ -3,6 +3,8 @@ import QuoteCard from "../components/quotes/QuoteCard";
 import quotesService from "../services/quotesService";
 import { useQuotesContext } from "../hooks/useQuotesContext";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function Quotes() {
 	const { state, dispatch } = useQuotesContext();
@@ -25,6 +27,18 @@ function Quotes() {
 
 	const onGetQuotesError = useCallback((error) => {
 		console.log({ error });
+		if (error.message === "Network Error") {
+			toast.error(`No Quotes found,\n  Error found: ${error.message}`, {
+				position: "top-right",
+				autoClose: 3000,
+				hideProgressBar: false,
+				closeOnClick: true,
+				pauseOnHover: true,
+				draggable: true,
+				progress: undefined,
+				theme: "dark"
+			});
+		}
 	}, []);
 
 	useEffect(() => {
@@ -35,7 +49,7 @@ function Quotes() {
 		<div className="container-fluid">
 			<div className="row m-3 py-1 rounded shadow">
 				<div className="col-md-1 mx-1 pt-1">
-					<Link to="/quote/new" className="btn py-1 btn-outline-success border-3 shadow">
+					<Link to="/quote/new" className="btn mb-1 btn-outline-success border-3 shadow">
 						<div title="add a quote" className="pt-2 material-symbols-outlined">
 							Add_Comment
 						</div>
@@ -44,11 +58,17 @@ function Quotes() {
 				<div className="col-md-1 pt-2">
 					<h3>Quotes</h3>
 				</div>
-				<div className="col-md-4 mx-auto mt-1">
-					<div class="input-group pt-auto shadow border border-2 rounded border-dark ">
-						<input type="text" class="form-control" placeholder="search..." aria-label="" aria-describedby="basic-addon1" />
-						<div class="input-group-prepend">
-							<button class="btn btn-info border border-dark" type="button">
+				<div className="col-md-4 mx-auto mt-1 pt-1">
+					<div className="input-group pt-auto shadow border border-2 rounded border-dark ">
+						<input
+							type="text"
+							className="form-control"
+							placeholder="search..."
+							aria-label=""
+							aria-describedby="basic-addon1"
+						/>
+						<div className="input-group-prepend">
+							<button className="btn btn-info border border-dark" type="button">
 								Button
 							</button>
 						</div>
@@ -58,6 +78,7 @@ function Quotes() {
 			<div className="row gx-1 my-3 bg-light border border-3 border-dark rounded">
 				{state.quotes && state.quotes.map(mapQuotes)}
 			</div>
+			<ToastContainer />
 		</div>
 	);
 }

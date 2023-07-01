@@ -21,7 +21,7 @@ function QuoteCard({ quote }) {
 	const handleEditClick = (e) => {
 		e.preventDefault();
 		const stateCard = { type: "QUOTE_CARD", payload: quote };
-		navigate(`/quote/${quote._id}`, { ...stateCard });
+		navigate(`/quote/${quote._id}`, { state: stateCard });
 		console.log("handleEditClick: ", { stateCard });
 	};
 
@@ -47,18 +47,18 @@ function QuoteCard({ quote }) {
 			</div>
 			<div className="card-footer">
 				<div className="row">
-					<div className="col-md-4 ms-auto mt-auto">
+					<div className="col-md-6 ms-auto mt-auto">
 						<p className="lead">
 							<em>{formatDistanceToNow(new Date(quote.createdAt), { addSuffix: true })}</em>
 						</p>
 					</div>
 					<div className="col-md-5 ms-auto mb-1 ">
-						<div className=" mx-auto btn btn-outline-warning">
+						<div className=" ms-2 btn btn-outline-warning">
 							<div className="material-symbols-outlined" onClick={handleEditClick}>
 								Edit_Square
 							</div>
 						</div>
-						<div className=" ms-2 btn btn-outline-danger" onClick={handleDelete}>
+						<div className=" ms-1 btn btn-outline-danger" onClick={handleDelete}>
 							<div className="material-symbols-outlined">Delete</div>
 						</div>
 					</div>
