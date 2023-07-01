@@ -26,24 +26,17 @@ function Quotes() {
 	);
 
 	const onGetQuotesError = useCallback((error) => {
-		console.log({ error });
+		console.error({ error });
 		if (error.message === "Network Error") {
-			toast.error(`No Quotes found,\n  Error found: ${error.message}`, {
-				position: "top-right",
-				autoClose: 3000,
-				hideProgressBar: false,
-				closeOnClick: true,
-				pauseOnHover: true,
-				draggable: true,
-				progress: undefined,
-				theme: "dark"
-			});
+			toast.error(`No Quotes found,\n  Error found: ${error.message}`);
 		}
 	}, []);
 
 	useEffect(() => {
 		quotesService.getQuotes().then(onGetQuotesSuccess).catch(onGetQuotesError);
 	}, [onGetQuotesSuccess, onGetQuotesError]);
+
+	console.log({ state, dispatch });
 
 	return (
 		<div className="container-fluid">
@@ -78,7 +71,15 @@ function Quotes() {
 			<div className="row gx-1 my-3 bg-light border border-3 border-dark rounded">
 				{state.quotes && state.quotes.map(mapQuotes)}
 			</div>
-			<ToastContainer />
+			<ToastContainer
+				position="top-right"
+				autoClose={5000}
+				hideProgressBar={false}
+				closeOnClick={true}
+				pauseOnHover={true}
+				draggable={true}
+				theme="dark"
+			/>
 		</div>
 	);
 }
