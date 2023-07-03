@@ -1,9 +1,10 @@
-require("dotenv").config(); // Load environment variables from a .env file
+require("dotenv").config(); // Load environment variables from env
 
 const express = require("express");
 const mongoose = require("mongoose");
 
 const quoteRoutes = require("../routes/quotesRoute");
+const userRoutes = require("../routes/userRoute");
 
 const port = process.env.PORT;
 
@@ -29,13 +30,14 @@ app.use((req, res, next) => {
 
 // route handler for the "/api/quotes" path
 app.use("/api/quotes", quoteRoutes);
+app.use("/api/user", userRoutes);
 
 // Connect to the MongoDB database
 mongoose
 	.connect(process.env.MONGO_URI)
 	.then(() => {
 		// Start the Express app and listen for incoming requests
-		app.listen(port, () => console.log(`Testing weCode: ${port}!`));
+		app.listen(port, () => console.log(`weCode running on port: ${port}!`));
 	})
 	.catch((e) => {
 		console.error(e);

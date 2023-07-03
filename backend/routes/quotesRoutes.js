@@ -1,6 +1,14 @@
 const express = require("express");
 
-const { createQuote, getQuotes, getQuoteById, updateQuote, deleteQuote } = require("../controllers/quoteController");
+const {
+	createQuote,
+	getQuotes,
+	paginateQuotes,
+	searchQuotes,
+	getQuoteById,
+	updateQuote,
+	deleteQuote
+} = require("../controllers/quoteController");
 
 //needed for route handlers
 const router = express.Router();
@@ -9,6 +17,10 @@ const router = express.Router();
 router.post("/", createQuote);
 
 router.get("/", getQuotes);
+
+router.get("/paginate", paginateQuotes);
+
+router.get("/search", searchQuotes);
 
 router.get("/:id", getQuoteById);
 
