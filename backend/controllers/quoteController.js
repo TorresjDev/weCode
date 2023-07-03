@@ -15,6 +15,13 @@ const createQuote = async (req, res) => {
 		return res.status(400).json({ error: "input for quote and author is required", emptyFieldInputs });
 	}
 	try {
+		const existingQuote = await QuoteModel.findOne({ quote });
+
+		if (existingQuote) {
+			return res.status(409).json({
+				error: "Quote already exists"
+			});
+		}
 		const quotePost = await QuoteModel.create({ quote, author, rating });
 		res.status(200).json(quotePost);
 	} catch (e) {
@@ -25,6 +32,50 @@ const createQuote = async (req, res) => {
 const getQuotes = async (req, res) => {
 	const quotes = await QuoteModel.find({}).sort({ createdAt: -1 });
 	res.status(200).json(quotes);
+};
+
+const paginateQuotes = async (req, res) => {
+	try {
+		const pageIndex = parseInt(req.query.pageIndex) || 0; // Extract pageIndex from query params (default to 0 if not provided)
+		const pageSize = parseInt(req.query.pageSize) || 10; // Extract pageSize from query params (default to 10 if not provided)
+
+		const quotes = await QuoteModel.find()
+			.skip(pageIndex * pageSize)
+			.limit(pageSize);
+
+		const totalQuotes = await QuoteModel.countDocuments(quotes);
+		res.json({ item: { pageIndex, pageSize, pageItems: quotes, totalCount: totalQuotes } });
+	} catch (error) {
+		console.error(error);
+		res.status(500).json({ error: "Server error" });
+	}
+};
+
+const searchQuotes = async (req, res) => {
+	try {
+		const pageIndex = parseInt(req.query.pageIndex) || 0;
+		const pageSize = parseInt(req.query.pageSize) || 3;
+		const keyword = req.query.keyword || "";
+
+		const query = {};
+
+		if (keyword) {
+			query.$or = [
+				{ text: { $regex: keyword, $options: "i" } }, // Case-insensitive search by 'text' field
+				{ author: { $regex: keyword, $options: "i" } } // Case-insensitive search by 'author' field
+			];
+		}
+		const totalQuotes = await QuoteModel.countDocuments(query);
+
+		const quotes = await QuoteModel.find(query)
+			.skip(pageIndex * pageSize)
+			.limit(pageSize);
+
+		res.json({ item: { pageIndex, pageSize, pageItems: quotes, totalCount: totalQuotes } });
+	} catch (error) {
+		console.error(error);
+		res.status(500).json({ error: "Server error" });
+	}
 };
 
 const getQuoteById = async (req, res) => {
@@ -63,4 +114,4 @@ const deleteQuote = async (req, res) => {
 	res.status(200).json(quote);
 };
 
-module.exports = { createQuote, getQuotes, getQuoteById, updateQuote, deleteQuote };
+module.exports = { createQuote, getQuotes, paginateQuotes, searchQuotes, getQuoteById, updateQuote, deleteQuote };
