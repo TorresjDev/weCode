@@ -3,8 +3,8 @@ require("dotenv").config(); // Load environment variables from env
 const express = require("express");
 const mongoose = require("mongoose");
 
-const quoteRoutes = require("../routes/quotesRoute");
-const userRoutes = require("../routes/userRoute");
+const quoteRoutes = require("../routes/quotesRoutes");
+const userRoutes = require("../routes/userRoutes");
 
 const port = process.env.PORT;
 
