@@ -17,11 +17,9 @@ const userSchema = new Schema(
 			required: true
 		},
 		placeOfBirth: {
-			type: {
-				city: String,
-				state: String,
-				country: String
-			},
+			city: String,
+			state: String,
+			country: String,
 			required: true
 		},
 		email: {
@@ -41,4 +39,4 @@ const userSchema = new Schema(
 	{ timestamps: true }
 );
 
-module.exports = mongoose.model("signup", userSchema);
+module.exports = mongoose.model("User", userSchema);

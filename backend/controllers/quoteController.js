@@ -19,7 +19,7 @@ const createQuote = async (req, res) => {
 
 		if (existingQuote) {
 			return res.status(409).json({
-				error: "Quote already exists"
+				error: "Quote already exists" 
 			});
 		}
 		const quotePost = await QuoteModel.create({ quote, author, rating });
