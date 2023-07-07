@@ -7,6 +7,7 @@ import Quotes from "./pages/Quotes";
 import Login from "./pages/Login";
 import "./app.css";
 import NotFound from "./pages/NotFound";
+import SideBar from "./components/SideBar";
 
 const loading = () => <div className="">loading....</div>;
 function App() {
@@ -14,18 +15,20 @@ function App() {
 		<div className="app bg-light">
 			<Suspense fallback={loading}>
 				<Navbar />
-
-				<div className="pages">
-					<Routes>
-						<Route path="/" element={<Home />} />
-						<Route path="/quotes" element={<Quotes />} />
-						<Route path="/quote/new" element={<QuoteForm />} />
-
-						<Route path="/quote/:id" element={<QuoteForm />} />
-
-						<Route path="/login" element={<Login />} />
-						<Route path="*" element={<NotFound />} />
-					</Routes>
+				<div className="row mt-5">
+					<SideBar />
+					<div className="col-md-9">
+						<main className="pages">
+							<Routes>
+								<Route path="/" element={<Home />} />
+								<Route path="/quotes" element={<Quotes />} />
+								<Route path="/quote/new" element={<QuoteForm />} />
+								<Route path="/quote/:id" element={<QuoteForm />} />
+								<Route path="/login" element={<Login />} />
+								<Route path="*" element={<NotFound />} />
+							</Routes>
+						</main>
+					</div>
 				</div>
 			</Suspense>
 			<footer className="footer pb-2">footer</footer>

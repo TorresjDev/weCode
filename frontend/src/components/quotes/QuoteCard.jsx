@@ -53,6 +53,11 @@ function QuoteCard({ quote }) {
 						</p>
 					</div>
 					<div className="col-md-5 ms-auto mb-1 ">
+						<div className=" ms-2 btn btn-outline-success">
+							<div className="material-symbols-outlined" onClick={handleEditClick}>
+								Thumb_Up
+							</div>
+						</div>
 						<div className=" ms-2 btn btn-outline-warning">
 							<div className="material-symbols-outlined" onClick={handleEditClick}>
 								Edit_Square

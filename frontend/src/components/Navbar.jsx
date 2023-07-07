@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function Navbar() {
 	return (
-		<nav className="navbar navbar-expand-lg bg-dark bg-gradient">
+		<nav className="navbar navbar-expand-lg bg-dark bg-gradient fixed-top">
 			<div className="container-fluid">
 				<Link className="nav-link" to="/">
 					<img
@@ -30,12 +30,15 @@ function Navbar() {
 					<ul className="navbar-nav mb-2 mb-lg-0 ms-1">
 						<li className="nav-item mx-1">
 							<Link className="btn btn-light text-warning border-warning" to="/login">
-								<strong>Login</strong>
+								<div className="material-symbols-outlined" title="Sign In">
+									Login
+								</div>
+								{/* <strong>Login</strong> */}
 							</Link>
 						</li>
 						<li className="nav-item mx-1">
-							<Link className="btn btn-light text-danger border-danger" to="/register">
-								<strong>Register</strong>
+							<Link className="btn btn-light text-danger border-danger my-1" to="/register">
+								<strong>Create an account</strong>
 							</Link>
 						</li>
 					</ul>
