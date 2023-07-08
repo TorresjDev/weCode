@@ -17,7 +17,7 @@ function App() {
 		age: new Date(),
 		contactNumber: "+1(661)543-4350",
 		address: "",
-		isLoggedIn: false
+		isLoggedIn: true
 	});
 
 	false && console.log(state, setState);
