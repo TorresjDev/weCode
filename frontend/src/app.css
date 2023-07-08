@@ -1,19 +1,3 @@
-button.link-button {
-	background-color: transparent;
-	border: none;
-	cursor: pointer;
-	text-decoration: underline;
-	display: inline;
-	/* margin: 0;
-  padding: 0; */
-	text-decoration: none;
-}
-
-.link-button:hover,
-.link-button:focus {
-	text-decoration: none;
-}
-
 @keyframes App-logo-spin {
 	from {
 		transform: rotate(0deg);
@@ -70,6 +54,50 @@ html {
 }
 
 /*! Footer END */
+
+/* ? Navbar START */
+
+nav {
+	font-family: "Silkscreen";
+	overflow: hidden;
+}
+nav .weCode {
+	font-family: "Silkscreen";
+}
+.navbar a:hover,
+.dropdown:hover .dropbtn {
+	background-color: red;
+}
+.dropdown {
+	float: right;
+	overflow: hidden;
+}
+.dropdown-content {
+	display: none;
+	position: fixed;
+	background-color: #f9f9f9;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+	z-index: 1;
+}
+
+.dropdown-content a {
+	float: none;
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+	text-align: left;
+}
+
+.dropdown-content a:hover {
+	background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-content {
+	display: block;
+}
+/* ! Navbar END */
 
 /*? Home START */
 .home img {
@@ -265,10 +293,6 @@ html {
 
 .material-symbols-outlined {
 	font-variation-settings: "FILL" 0, "weight" 500, "GRAD" 0, "opsz" 20;
-}
-
-nav {
-	font-family: "Silkscreen";
 }
 
 /*? quote-card*/
