@@ -1,4 +1,4 @@
-import React, { Suspense } from "react";
+import React, { Suspense, useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
@@ -11,16 +11,27 @@ import SideBar from "./components/SideBar";
 
 const loading = () => <div className="">loading....</div>;
 function App() {
+	const [state, setState] = useState({
+		email: "unknown@test.com",
+		fullName: "Unknown User",
+		age: new Date(),
+		contactNumber: "+1(661)543-4350",
+		address: "",
+		isLoggedIn: false
+	});
+
+	false && console.log(state, setState);
+
 	return (
 		<div className="app bg-light">
 			<Suspense fallback={loading}>
-				<Navbar />
-				<div className="row mt-5">
-					<SideBar />
-					<div className="col-md-9">
+				<Navbar user={state} />
+				<div className="row mt-5 pt-3">
+					<SideBar user={state} />
+					<div className="col-md-9 mt-3">
 						<main className="pages">
 							<Routes>
-								<Route path="/" element={<Home />} />
+								<Route path="/" element={<Home user={state} />} />
 								<Route path="/quotes" element={<Quotes />} />
 								<Route path="/quote/new" element={<QuoteForm />} />
 								<Route path="/quote/:id" element={<QuoteForm />} />

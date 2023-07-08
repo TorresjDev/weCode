@@ -36,21 +36,18 @@ function Login() {
 				<div className="col-md-6  col-sm-6 mx-auto my-2">
 					<Formik initialValues={loginState} onSubmit={handleSubmit} validationSchema={basicSchema}>
 						<Form className="border border-3 border-secondary rounded-3 shadow-lg m-1 p-3">
-							<div className="m-3 form-group">
-								<label htmlFor="email" className="form-label">
+							<div className="m-3 form-floating">
+								<Field type="email" name="email" className="form-control" id="email" aria-describedby="emailHelp" />
+								<label htmlFor="email" className="form-label text-dark">
 									Email address
 								</label>
-								<Field type="email" name="email" className="form-control" id="email" aria-describedby="emailHelp" />
 								<ErrorMessage name="email" component="div" className="ms-3 has-error text-danger" />
-								<div id="emailHelp" className="form-text">
-									We'll never share your email with anyone else.
-								</div>
 							</div>
-							<div className="m-3 form-group">
-								<label htmlFor="password" className="form-label">
+							<div className="m-3 form-floating">
+								<Field type="password" name="password" className="form-control" id="password" />
+								<label htmlFor="password" className="form-label text-dark">
 									Password
 								</label>
-								<Field type="password" name="password" className="form-control" id="password" />
 								<ErrorMessage name="password" component="div" className="ms-3 has-error text-danger" />
 							</div>
 							<div className="row">

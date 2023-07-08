@@ -28,17 +28,39 @@ function Navbar() {
 						</li>
 					</ul>
 					<ul className="navbar-nav mb-2 mb-lg-0 ms-1">
-						<li className="nav-item mx-1">
-							<Link className="btn btn-light text-warning border-warning" to="/login">
-								<div className="material-symbols-outlined" title="Sign In">
-									Login
+						<li className="nav-item mx-3">
+							<div className="input-group border border-2 rounded border-dark">
+								<input
+									type="text"
+									className="form-control"
+									placeholder="search..."
+									aria-label=""
+									aria-describedby="basic-addon1"
+								/>
+								<div className="input-group-prepend">
+									<button className="btn btn-info border border-dark" type="button">
+										Button
+									</button>
 								</div>
-								{/* <strong>Login</strong> */}
-							</Link>
+							</div>
 						</li>
+					</ul>
+					<ul className="navbar-nav mb-2 mb-lg-0 ms-1">
 						<li className="nav-item mx-1">
 							<Link className="btn btn-light text-danger border-danger my-1" to="/register">
 								<strong>Create an account</strong>
+							</Link>
+						</li>
+						<li className="nav-item mx-1">
+							<Link
+								className="btn btn-light text-warning border-warning mt-1"
+								to="/login"
+								style={{ padding: "1px 3px 1px 2px" }}
+							>
+								<div className="material-symbols-outlined" title="Sign In" style={{ padding: "3px 3px 1px 2px" }}>
+									Login
+								</div>
+								{/* <strong>Login</strong> */}
 							</Link>
 						</li>
 					</ul>

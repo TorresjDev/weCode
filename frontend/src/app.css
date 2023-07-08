@@ -93,7 +93,7 @@ html {
 	flex-shrink: 0;
 	background-color: #5b5b5b;
 	overflow: hidden;
-	width: 75px;
+	width: 69px;
 	border-right: 1px solid var(--light-gray);
 	display: flex;
 	flex-direction: column;
@@ -105,6 +105,23 @@ html {
 	position: sticky;
 	left: 0;
 	top: var(--header-height);
+}
+
+.sidebar ::-webkit-scrollbar {
+	box-shadow: inset 0 0 5px silver;
+	width: 1rem;
+	border-radius: 10px;
+}
+
+.sidebar ::-webkit-scrollbar-thumb {
+	background: #821127;
+	border-radius: 10px;
+}
+
+.sidebar ::-webkit-scrollbar-thumb:hover {
+	background: #820000;
+	width: 1.5rem;
+	border-radius: 10px;
 }
 
 .sidebar .hidden-sidebar {
@@ -152,15 +169,7 @@ html {
 .middle-sidebar,
 .bottom-sidebar {
 	width: 100%;
-	padding: 0.5rem 6rem 0.5rem 0;
-}
-
-.container {
-	display: flex;
-}
-
-.content {
-	margin: 1rem;
+	padding: 0.5rem 5rem 0.5rem 0;
 }
 
 .sidebar-list {
