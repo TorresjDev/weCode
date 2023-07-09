@@ -62,11 +62,27 @@ nav {
 	overflow: hidden;
 }
 nav .weCode {
-	font-family: "Silkscreen";
+	font: bold 36px "Silkscreen";
+	color: #820000;
+	/* text-str/oke: 1.5px #000000; */
+	-webkit-text-stroke: 3px #000000;
 }
-.navbar a:hover,
+
+nav .weCode:hover {
+	color: #820000;
+	-webkit-text-stroke: 1.5px #c0c0c0;
+}
+
+.dropdown .dropbtn {
+	background-color: #c0c0c0;
+	border: 2px groove grey;
+	border-radius: 5px;
+	color: #820000;
+}
 .dropdown:hover .dropbtn {
-	background-color: red;
+	background-color: #820000;
+	border: groove;
+	color: #c0c0c0;
 }
 .dropdown {
 	float: right;

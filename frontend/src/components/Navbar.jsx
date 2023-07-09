@@ -5,7 +5,7 @@ function Navbar({ user }) {
 	return (
 		<nav className="navbar navbar-expand-lg bg-dark bg-gradient fixed-top">
 			<div className="container-fluid">
-				<Link className="nav-link text-success weCode" to="/">
+				<Link className="nav-link weCode" to="/">
 					{/* <img
 						src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo.svg"
 						alt="Bootstrap"
@@ -16,7 +16,7 @@ function Navbar({ user }) {
 					<strong>weCode</strong>
 				</Link>
 				<ul className="navbar-nav mb-2 mb-lg-0 ms-1">
-					<li className="nav-item mx-3">
+					<li className="pill mx-3">
 						<div className="input-group border border-2 rounded border-dark">
 							<input
 								type="text"
@@ -26,28 +26,21 @@ function Navbar({ user }) {
 								aria-describedby="basic-addon1"
 							/>
 							<div className="input-group-prepend">
-								<button className="btn btn-info border border-dark" type="button">
-									Button
+								<button className="btn btn-outline-info border border-dark" type="button">
+									<div className="material-symbols-outlined" title="" style={{ padding: "3px 3px 1px 2px" }}>
+										manage_search
+									</div>
 								</button>
 							</div>
 						</div>
 					</li>
 				</ul>
-				<div className="collapse navbar-collapse mx-1 text-uppercase fw-bolder" id="navbarSupportedContent">
-					<ul className="navbar-nav me-auto mb-2 mb-lg-0 ms-3 ">
-						<li className="nav-item ">
-							<Link className="nav-link text-info" to="/">
-								Home
-							</Link>
-						</li>
-						<li className="nav-item ">
-							<Link className="nav-link text-info" to="/quotes">
-								Quotes
-							</Link>
-						</li>
-					</ul>
+				<div
+					className="collapse navbar-collapse mx-1 text-uppercase fw-bolder d-flex justify-content-end"
+					id="navbarSupportedContent"
+				>
 					{!user.isLoggedIn ? (
-						<ul className="navbar-nav mb-2 mb-lg-0 ms-1">
+						<ul className="navbar-nav mb-2 mb-lg-0">
 							<li className="nav-item mx-1">
 								<Link className="btn btn-light text-danger border-danger my-1" to="/register">
 									<strong>Create an account</strong>
@@ -68,14 +61,21 @@ function Navbar({ user }) {
 						</ul>
 					) : (
 						<div class="dropdown">
-							<button class="dropbtn">Dropdown</button>
+							<button class="dropbtn mx-3 px-3 py-1">
+								<div className="material-symbols-outlined" title="" style={{ padding: "3px 3px 1px 2px" }}>
+									dropdown
+								</div>
+							</button>
 							<div class="dropdown-content">
 								<Link className="nav-link text-info" to="/">
 									Home
 								</Link>
 								<Link className="nav-link text-info" to="/quotes">
 									Quotes
-								</Link>{" "}
+								</Link>
+								<Link className="nav-link text-danger" to="/login">
+									Logout
+								</Link>
 							</div>
 						</div>
 					)}

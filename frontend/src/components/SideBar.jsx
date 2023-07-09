@@ -10,7 +10,7 @@ function SideBar() {
 
 	return (
 		<aside className={state ? "sidebar open" : "sidebar"} onMouseEnter={handleSideBar} onMouseLeave={handleSideBar}>
-			<div className="top-sidebar mt-1">
+			<div className="top-sidebar mt-1 pt-1">
 				<Link href="#" className="channel-logo">
 					<img
 						src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo.svg"

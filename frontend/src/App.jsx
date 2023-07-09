@@ -26,7 +26,7 @@ function App() {
 		<div className="app bg-light">
 			<Suspense fallback={loading}>
 				<Navbar user={state} />
-				<div className="row mt-5 pt-3">
+				<div className="row mt-5">
 					<SideBar user={state} />
 					<div className="col-md-9 mt-3">
 						<main className="pages">
