@@ -73,6 +73,17 @@ nav .weCode:hover {
 	-webkit-text-stroke: 1.5px #c0c0c0;
 }
 
+.search-btn {
+	color: #820000;
+	font-size: 27px;
+	-webkit-text-stroke: 1px #000000;
+}
+
+nav .search-btn:hover {
+	color: #c0c0c0;
+	-webkit-text-stroke: 1px #820000;
+}
+
 .dropdown .dropbtn {
 	background-color: #c0c0c0;
 	border: 2px groove grey;
@@ -186,6 +197,18 @@ nav .weCode:hover {
 	align-items: center;
 }
 
+.channel-symbol {
+	font-size: 33px;
+	/* width: 100%; */
+	color: #820000;
+	-webkit-text-stroke: 1px #000000;
+}
+
+.channel-symbol:hover {
+	color: #c0c0c0;
+	-webkit-text-stroke: 1px #820000;
+}
+
 .sidebar .channel-logo {
 	display: block;
 	width: 30px;
@@ -196,11 +219,7 @@ nav .weCode:hover {
 .sidebar.open .channel-logo {
 	width: 90px;
 	height: 90px;
-}
-
-.sidebar .channel-logo > img {
-	width: 100%;
-	height: 100%;
+	text-align: center;
 }
 
 .middle-sidebar {
@@ -219,7 +238,7 @@ nav .weCode:hover {
 .sidebar-list {
 	margin: 0;
 	padding: 0;
-	display: flex;
+	display: inline-flex;
 	flex-direction: column;
 	align-items: center;
 	list-style: none;
@@ -238,6 +257,10 @@ nav .weCode:hover {
 .sidebar-list .hidden-sidebar {
 	margin-left: 1.5rem;
 	white-space: nowrap;
+}
+
+.sidebar-list .hidden-sidebar:hover {
+	color: #820000;
 }
 
 .sidebar-link {
