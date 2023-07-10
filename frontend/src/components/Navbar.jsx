@@ -20,14 +20,14 @@ function Navbar({ user }) {
 						<div className="input-group border border-2 rounded border-dark">
 							<input
 								type="text"
-								className="form-control"
+								className="form-control form-control-sm"
 								placeholder="search..."
 								aria-label=""
 								aria-describedby="basic-addon1"
 							/>
 							<div className="input-group-prepend">
-								<button className="btn btn-outline-info border border-dark" type="button">
-									<div className="material-symbols-outlined" title="" style={{ padding: "3px 3px 1px 2px" }}>
+								<button className="btn btn-sm border border-dark " type="button">
+									<div className="material-symbols-outlined search-btn " title="">
 										manage_search
 									</div>
 								</button>

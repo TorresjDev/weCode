@@ -28,7 +28,7 @@ function App() {
 				<Navbar user={state} />
 				<div className="row mt-5">
 					<SideBar user={state} />
-					<div className="col-md-9 mt-3">
+					<div className="col-md-10 mt-3">
 						<main className="pages">
 							<Routes>
 								<Route path="/" element={<Home user={state} />} />
