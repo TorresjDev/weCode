@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
-function SideBar() {
+function SideBar({ user }) {
 	const [state, setState] = useState(false);
 
 	const handleSideBar = () => {
@@ -12,19 +12,12 @@ function SideBar() {
 		<aside className={state ? "sidebar open" : "sidebar"} onMouseLeave={handleSideBar}>
 			<div className="top-sidebar mt-1 pt-1">
 				<div className="channel-logo" onClick={handleSideBar}>
-					{/* <img
-						src="https://getbootstrap.com/docs/5.3/assets/brand/bootstrap-logo.svg"
-						alt="Bootstrap"
-						width="30"
-						height="24"
-						className="mx-1"
-					/> */}
 					<div className="material-symbols-outlined channel-symbol" title="Expand Sidebar">
 						format_letter_spacing
 					</div>
 				</div>
-				<div className="hidden-sidebar your-channel">Your channel</div>
-				<div className="hidden-sidebar channel-name">Web Dev Simplified</div>
+				<div className="hidden-sidebar your-channel">{user.fullName}</div>
+				<div className="hidden-sidebar channel-name">weCode</div>
 			</div>
 			<div className="middle-sidebar">
 				<ul className="sidebar-list">

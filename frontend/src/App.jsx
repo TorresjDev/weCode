@@ -8,6 +8,7 @@ import Login from "./pages/Login";
 import "./app.css";
 import NotFound from "./pages/NotFound";
 import SideBar from "./components/SideBar";
+import Footer from "./components/Footer";
 
 const loading = () => <div className="">loading....</div>;
 function App() {
@@ -42,7 +43,7 @@ function App() {
 					</div>
 				</div>
 			</Suspense>
-			<footer className="footer pb-2">footer</footer>
+			<Footer />
 		</div>
 	);
 }
