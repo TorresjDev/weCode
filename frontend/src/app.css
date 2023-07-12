@@ -119,6 +119,7 @@ nav .search-btn:hover {
 
 .dropdown-content a:hover {
 	background-color: #ddd;
+	color: #820000;
 }
 
 .dropdown:hover .dropdown-content {
@@ -163,19 +164,19 @@ nav .search-btn:hover {
 }
 
 .sidebar ::-webkit-scrollbar {
-	box-shadow: inset 0 0 5px silver;
+	/* box-shadow: inset 0 0 5px silver; */
 	width: 1rem;
 	border-radius: 10px;
 }
 
 .sidebar ::-webkit-scrollbar-thumb {
-	background: #821127;
+	background: #820000;
 	border-radius: 10px;
 }
 
 .sidebar ::-webkit-scrollbar-thumb:hover {
 	background: #820000;
-	width: 1.5rem;
+	/* width: 1rem; */
 	border-radius: 10px;
 }
 
@@ -219,6 +220,7 @@ nav .search-btn:hover {
 .sidebar.open .channel-logo {
 	width: 90px;
 	height: 90px;
+	margin-top: 1rem;
 	text-align: center;
 }
 
@@ -259,8 +261,10 @@ nav .search-btn:hover {
 	white-space: nowrap;
 }
 
+.sidebar-list .sidebar-link:hover,
 .sidebar-list .hidden-sidebar:hover {
 	color: #820000;
+	font-weight: bold;
 }
 
 .sidebar-link {
@@ -299,6 +303,7 @@ nav .search-btn:hover {
 
 .sidebar.open {
 	width: 200px;
+	padding: 0;
 }
 
 .your-channel {
@@ -310,7 +315,7 @@ nav .search-btn:hover {
 }
 
 .channel-name {
-	color: var(--medium-gray);
+	color: #181818;
 	font-size: 0.75rem;
 }
 

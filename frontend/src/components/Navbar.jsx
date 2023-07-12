@@ -60,22 +60,25 @@ function Navbar({ user }) {
 							</li>
 						</ul>
 					) : (
-						<div class="dropdown">
-							<button class="dropbtn mx-3 px-3 py-1">
-								<div className="material-symbols-outlined" title="" style={{ padding: "3px 3px 1px 2px" }}>
-									dropdown
+						<div className="row">
+							<p>{user.email}</p>
+							<div class="dropdown">
+								<button class="dropbtn mx-3 px-3 py-1">
+									<div className="material-symbols-outlined" title="" style={{ padding: "3px 3px 1px 2px" }}>
+										dropdown
+									</div>
+								</button>
+								<div class="dropdown-content">
+									<Link className="nav-link " to="/">
+										Home
+									</Link>
+									<Link className="nav-link " to="/quotes">
+										Quotes
+									</Link>
+									<Link className="nav-link logout" to="/login">
+										Logout
+									</Link>
 								</div>
-							</button>
-							<div class="dropdown-content">
-								<Link className="nav-link text-info" to="/">
-									Home
-								</Link>
-								<Link className="nav-link text-info" to="/quotes">
-									Quotes
-								</Link>
-								<Link className="nav-link text-danger" to="/login">
-									Logout
-								</Link>
 							</div>
 						</div>
 					)}
