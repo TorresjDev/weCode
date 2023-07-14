@@ -27,10 +27,10 @@ function App() {
 		<div className="app bg-light">
 			<Suspense fallback={loading}>
 				<Navbar user={state} />
-				<div className="row mt-5">
+				<div className="row app-body">
 					<SideBar user={state} />
-					<div className="col-md-10 mt-3">
-						<main className="pages">
+					<div className="col-md-10 ">
+						<main className="pages ">
 							<Routes>
 								<Route path="/" element={<Home user={state} />} />
 								<Route path="/quotes" element={<Quotes />} />

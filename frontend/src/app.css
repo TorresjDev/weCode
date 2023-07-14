@@ -23,6 +23,9 @@ html {
 	width: 100%;
 }
 
+.app-body {
+	margin-top: 5%;
+}
 /*! App END */
 
 /*? pages START */
@@ -82,6 +85,16 @@ nav .weCode:hover {
 nav .search-btn:hover {
 	color: #c0c0c0;
 	-webkit-text-stroke: 1px #820000;
+}
+
+.user-navbar {
+	display: flex;
+}
+
+.user-navbar p {
+	margin-top: 3%;
+	color: #820000;
+	-webkit-text-stroke: 0.3px #c0c0c0;
 }
 
 .dropdown .dropbtn {
@@ -147,7 +160,7 @@ nav .search-btn:hover {
 /*? SideBar Start*/
 .sidebar {
 	flex-shrink: 0;
-	background-color: #5b5b5b;
+	background-color: #3c3c3c;
 	overflow: hidden;
 	width: 69px;
 	border-right: 1px solid var(--light-gray);
@@ -311,12 +324,12 @@ nav .search-btn:hover {
 	font-size: 0.75rem;
 	font-weight: bold;
 	margin-bottom: 0.15rem;
-	margin-top: 0.5rem;
 }
 
 .channel-name {
-	color: #181818;
+	color: #ffffff;
 	font-size: 0.75rem;
+	font-weight: bold;
 }
 
 .sidebar .top-sidebar {
