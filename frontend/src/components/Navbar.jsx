@@ -60,7 +60,7 @@ function Navbar({ user }) {
 							</li>
 						</ul>
 					) : (
-						<div className="row">
+						<div className="user-navbar">
 							<p>{user.email}</p>
 							<div class="dropdown">
 								<button class="dropbtn mx-3 px-3 py-1">

@@ -29,7 +29,7 @@ function SideBar({ user }) {
 							<div className="hidden-sidebar">Dashboard</div>
 						</Link>
 					</li>
-					<li className="sidebar-list-item active">
+					<li className="sidebar-list-item ">
 						<Link to="" className="sidebar-link">
 							<div className="material-symbols-outlined" title="">
 								public
