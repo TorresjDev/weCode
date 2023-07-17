@@ -14,11 +14,6 @@ html {
 /*? App START */
 
 .app {
-	/* display: flex;
-	justify-content: flex-end;
-	position: fixed;
-	top: 0;
-	left: 0; */
 	height: 100%;
 	width: 100%;
 }
@@ -44,15 +39,17 @@ html {
 /*? Footer START */
 
 .footer {
-	/* display: flex;
-    justify-content: flex-end;
-    position: fixed; */
+	display: flex;
+	justify-content: flex-end;
+	position: fixed;
 	bottom: 0;
 	padding: 0.9rem 3rem 0.12rem 1rem;
 	text-align: end;
 	background-color: #333;
 	color: white;
-	/* left: 0; */
+	width: 100%;
+	max-width: 100%;
+	left: 0;
 	/* height: 100%; */
 }
 

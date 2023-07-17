@@ -5,15 +5,17 @@ function SideBar({ user }) {
 	const [state, setState] = useState(false);
 
 	const handleSideBar = () => {
-		setState(!state);
+		setState(true);
 	};
 
 	return (
-		<aside className={state ? "sidebar open" : "sidebar"} onMouseLeave={handleSideBar}>
+		<aside className={state ? "sidebar open" : "sidebar"} onMouseLeave={() => setState(false)}>
 			<div className="top-sidebar mt-1 pt-1">
 				<div className="channel-logo" onClick={handleSideBar}>
-					<div className="material-symbols-outlined channel-symbol" title="Expand Sidebar">
-						format_letter_spacing
+					<div className="channel-symbol" title="Expand Sidebar">
+						<div className="material-symbols-outlined " title="Expand Sidebar">
+							format_letter_spacing
+						</div>
 					</div>
 				</div>
 				<div className="hidden-sidebar your-channel">{user.fullName}</div>
@@ -50,7 +52,7 @@ function SideBar({ user }) {
 							<div className="material-symbols-outlined" title="">
 								forum
 							</div>
-							<div className="hidden-sidebar">Feed</div>
+							<div className="hidden-sidebar">Message</div>
 						</Link>
 					</li>
 					<li className="sidebar-list-item">

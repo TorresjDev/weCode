@@ -24,7 +24,7 @@ function App() {
 	false && console.log(state, setState);
 
 	return (
-		<div className="app bg-light">
+		<div className=" container-fluid app bg-light">
 			<Suspense fallback={loading}>
 				<Navbar user={state} />
 				<div className="row app-body">
@@ -42,8 +42,8 @@ function App() {
 						</main>
 					</div>
 				</div>
+				<Footer />
 			</Suspense>
-			<Footer />
 		</div>
 	);
 }
