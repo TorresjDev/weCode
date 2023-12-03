@@ -20,6 +20,7 @@ html {
 
 .app-body {
 	margin-top: 5%;
+	height: 100%;
 }
 /*! App END */
 
@@ -156,6 +157,8 @@ nav .search-btn:hover {
 
 /*? SideBar Start*/
 .sidebar {
+	height: 100%;
+	width: 100%;
 	flex-shrink: 0;
 	background-color: #3c3c3c;
 	overflow: hidden;

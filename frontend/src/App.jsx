@@ -21,26 +21,33 @@ function App() {
 		isLoggedIn: true
 	});
 
+	const handleState = () => {
+		setState = (prevState) => {
+			console.log({ state });
+			return { ...prevState, isLoggedIn: false };
+		};
+	};
+
 	false && console.log(state, setState);
 
 	return (
 		<div className=" container-fluid app bg-light">
 			<Suspense fallback={loading}>
-				<Navbar user={state} />
+				<Navbar user={state} onLogout={handleState} />
 				<div className="row app-body">
 					<SideBar user={state} />
-					<div className="col-md-10 ">
-						<main className="pages ">
-							<Routes>
-								<Route path="/" element={<Home user={state} />} />
-								<Route path="/quotes" element={<Quotes />} />
-								<Route path="/quote/new" element={<QuoteForm />} />
-								<Route path="/quote/:id" element={<QuoteForm />} />
-								<Route path="/login" element={<Login />} />
-								<Route path="*" element={<NotFound />} />
-							</Routes>
-						</main>
-					</div>
+					{/* <div className=""> */}
+					<main className="col-md-10  pages ">
+						<Routes>
+							<Route path="/" element={<Home user={state} />} />
+							<Route path="/quotes" element={<Quotes />} />
+							<Route path="/quote/new" element={<QuoteForm />} />
+							<Route path="/quote/:id" element={<QuoteForm />} />
+							<Route path="/login" element={<Login />} />
+							<Route path="*" element={<NotFound />} />
+						</Routes>
+					</main>
+					{/* </div> */}
 				</div>
 				<Footer />
 			</Suspense>

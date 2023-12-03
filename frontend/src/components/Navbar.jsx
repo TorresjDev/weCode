@@ -1,7 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-function Navbar({ user }) {
+function Navbar(props) {
+	const user = props.user;
+	const handleLogoutClick = (e) => {
+		e.preventDefault();
+		// console.log();
+		props.onLogout();
+	};
 	return (
 		<nav className="navbar navbar-expand-lg bg-dark bg-gradient fixed-top">
 			<div className="container-fluid">
@@ -62,20 +68,20 @@ function Navbar({ user }) {
 					) : (
 						<div className="user-navbar">
 							<p>{user.email}</p>
-							<div class="dropdown">
-								<button class="dropbtn mx-3 px-3 py-1">
+							<div className="dropdown">
+								<button className="dropbox mx-3 px-3 py-1">
 									<div className="material-symbols-outlined" title="" style={{ padding: "3px 3px 1px 2px" }}>
 										dropdown
 									</div>
 								</button>
-								<div class="dropdown-content">
-									<Link className="nav-link " to="/">
+								<div className="dropdown-content">
+									<Link className="nav-link" to="/">
 										Home
 									</Link>
-									<Link className="nav-link " to="/quotes">
+									<Link className="nav-link" to="/quotes">
 										Quotes
 									</Link>
-									<Link className="nav-link logout" to="/login">
+									<Link className="nav-link logout" to="/login" onClick={handleLogoutClick}>
 										Logout
 									</Link>
 								</div>
